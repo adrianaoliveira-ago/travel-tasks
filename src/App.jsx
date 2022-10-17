@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import "./App.css";
 import TaskItem from "./TaskItem";
 import iconAdd from "./assets/icon-add.png";
@@ -6,10 +7,14 @@ import iconAdd from "./assets/icon-add.png";
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [inputText, setInputText] = useState("");
+  // const [list, updateList] = useState([]);
 
   function addTask() {
     // if input is empty don't add a new task
     if (inputText === "") {
+      toast("Fill the Task", {
+        icon: "✏️",
+      });
       console.log("toast");
       // show the alert "Input is empty"
     } else {
@@ -36,7 +41,9 @@ function App() {
             value={inputText}
             onChange={onChange}
           />
+
           {/* <img src="icon-add.png" onClick={addTask}/> */}
+          <Toaster position="top-center" />
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
         <ul className="app-list">
