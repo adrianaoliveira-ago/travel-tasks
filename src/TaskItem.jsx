@@ -1,14 +1,20 @@
 import "./TaskItem.css";
 
-function TaskItem({ label }) {
+function TaskItem({ label, onChange, onDelete, isDone }) {
+  function checkboxChange() {
+    console.log("checkboxChage");
+    onChange(label);
+  }
+  const labelClass = isDone ? "container-done container" : "container";
+
   return (
     <li className="round">
-      {/* {label} */}
-      <label className="container">
+      <label className={labelClass}>
         {label}
 
-        <input type="checkbox" />
+        <input type="checkbox" onChange={checkboxChange} checked={isDone} />
         <span className="checkmark"></span>
+        <button>delete</button>
       </label>
     </li>
   );
