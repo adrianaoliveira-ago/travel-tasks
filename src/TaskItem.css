@@ -11,7 +11,9 @@
   -ms-user-select: none;
   user-select: none;
 }
-
+.container-done {
+  text-decoration: line-through;
+}
 /* Hide the browser's default checkbox */
 .container input {
   position: absolute;

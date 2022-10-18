@@ -6,8 +6,8 @@ import iconAdd from "./assets/icon-add.png";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
+  const [doneList, setDoneList] = useState([]);
   const [inputText, setInputText] = useState("");
-  // const [list, updateList] = useState([]);
 
   function addTask() {
     // if input is empty don't add a new task
@@ -30,6 +30,19 @@ function App() {
     console.log(event.target.value);
   };
 
+  const markDone = (label) => {
+    console.log("markDone", label);
+    // remove label from taskList
+    const newTaskArray = taskList.filter((item) => {
+      return item !== label;
+    });
+    setTaskList(newTaskArray);
+
+    // add label on done list
+    const newArray = doneList.concat(label);
+    setDoneList(newArray);
+  };
+
   return (
     <div className="app-container">
       <div className="app-task-container">
@@ -46,9 +59,16 @@ function App() {
           <Toaster position="top-center" />
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
+
         <ul className="app-list">
           {taskList.map((item) => {
-            return <TaskItem label={item} />;
+            return <TaskItem label={item} onChange={markDone} />;
+          })}
+        </ul>
+
+        <ul className="app-list">
+          {doneList.map((item) => {
+            return <TaskItem label={item} isDone={true} />;
           })}
         </ul>
       </div>
