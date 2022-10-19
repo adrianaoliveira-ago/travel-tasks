@@ -2,10 +2,14 @@ import "./TaskItem.css";
 
 function TaskItem({ label, onChange, onDelete, isDone }) {
   function checkboxChange() {
-    console.log("checkboxChage");
+    // console.log("checkboxChage");
     onChange(label);
   }
   const labelClass = isDone ? "container-done container" : "container";
+
+  function onDeleteTasks() {
+    onDelete(label);
+  }
 
   return (
     <li className="round">
@@ -14,7 +18,7 @@ function TaskItem({ label, onChange, onDelete, isDone }) {
 
         <input type="checkbox" onChange={checkboxChange} checked={isDone} />
         <span className="checkmark"></span>
-        <button>delete</button>
+        <button onClick={onDeleteTasks}>delete</button>
       </label>
     </li>
   );
