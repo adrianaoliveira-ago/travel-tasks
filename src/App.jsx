@@ -27,11 +27,11 @@ function App() {
 
   const onChange = (event) => {
     setInputText(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const markDone = (label) => {
-    console.log("markDone", label);
+    // console.log("markDone", label);
     // remove label from taskList
     const newTaskArray = taskList.filter((item) => {
       return item !== label;
@@ -41,6 +41,13 @@ function App() {
     // add label on done list
     const newArray = doneList.concat(label);
     setDoneList(newArray);
+  };
+
+  const onDeleteTasks = (label) => {
+    const arrayRemove = doneList.filter((item) => {
+      return item !== label;
+    });
+    setDoneList(arrayRemove);
   };
 
   return (
@@ -68,7 +75,9 @@ function App() {
 
         <ul className="app-list">
           {doneList.map((item) => {
-            return <TaskItem label={item} isDone={true} />;
+            return (
+              <TaskItem label={item} isDone={true} onDelete={onDeleteTasks} />
+            );
           })}
         </ul>
       </div>
