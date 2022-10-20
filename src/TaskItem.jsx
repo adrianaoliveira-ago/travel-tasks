@@ -14,11 +14,12 @@ function TaskItem({ label, onChange, onDelete, isDone }) {
   return (
     <li className="round">
       <label className={labelClass}>
-        {label}
-
-        <input type="checkbox" onChange={checkboxChange} checked={isDone} />
-        <span className="checkmark"></span>
-        <button onClick={onDeleteTasks}>delete</button>
+        <div className="task-item-button">
+          {label}
+          <input type="checkbox" onChange={checkboxChange} checked={isDone} />
+          <span className="checkmark"></span>
+          <button onClick={onDeleteTasks}>delete</button>
+        </div>
       </label>
     </li>
   );

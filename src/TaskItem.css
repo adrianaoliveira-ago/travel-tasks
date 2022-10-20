@@ -10,6 +10,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin-top: 10px;
 }
 .container-done {
   text-decoration: line-through;
@@ -30,13 +31,15 @@
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eee;
+  background-color: white;
+  border-radius: 100%;
+  border: 1px solid #80808080;
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+/* .container:hover input ~ .checkmark {
   background-color: #ccc;
-}
+} */
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
@@ -66,4 +69,10 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.task-item-button {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
 }
