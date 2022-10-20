@@ -43,11 +43,18 @@ function App() {
     setDoneList(newArray);
   };
 
-  const onDeleteTasks = (label) => {
+  const onDeleteDone = (label) => {
     const arrayRemove = doneList.filter((item) => {
       return item !== label;
     });
     setDoneList(arrayRemove);
+  };
+
+  const onDeleteTasks = (label) => {
+    const arrayRemove = taskList.filter((item) => {
+      return item !== label;
+    });
+    setTaskList(arrayRemove);
   };
 
   return (
@@ -69,14 +76,20 @@ function App() {
 
         <ul className="app-list">
           {taskList.map((item) => {
-            return <TaskItem label={item} onChange={markDone} />;
+            return (
+              <TaskItem
+                label={item}
+                onChange={markDone}
+                onDelete={onDeleteTasks}
+              />
+            );
           })}
         </ul>
 
         <ul className="app-list">
           {doneList.map((item) => {
             return (
-              <TaskItem label={item} isDone={true} onDelete={onDeleteTasks} />
+              <TaskItem label={item} isDone={true} onDelete={onDeleteDone} />
             );
           })}
         </ul>
