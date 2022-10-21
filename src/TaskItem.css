@@ -4,7 +4,7 @@
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  font-size: 22px;
+  /* font-size: 22px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -42,7 +42,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #21ecf3;
+  background-color: #c48b9f;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -73,7 +73,6 @@
 .task-item-button {
   display: flex;
   justify-content: space-between;
-  margin-right: 30px;
   align-items: center;
 }
 
