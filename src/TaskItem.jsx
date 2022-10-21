@@ -1,4 +1,5 @@
 import "./TaskItem.css";
+import iconTrash from "./assets/icon-trash.svg";
 
 function TaskItem({ label, onChange, onDelete, isDone }) {
   function checkboxChange() {
@@ -16,9 +17,16 @@ function TaskItem({ label, onChange, onDelete, isDone }) {
       <label className={labelClass}>
         <div className="task-item-button">
           {label}
-          <input type="checkbox" onChange={checkboxChange} checked={isDone} />
-          <span className="checkmark"></span>
-          <button onClick={onDeleteTasks}>delete</button>
+          <div>
+            <input type="checkbox" onChange={checkboxChange} checked={isDone} />
+            <span className="checkmark"></span>
+          </div>
+          <img
+            src={iconTrash}
+            onClick={onDeleteTasks}
+            className="task-item-icon-trash"
+          />
+          {/* <button onClick={onDeleteTasks}>delete</button> */}
         </div>
       </label>
     </li>

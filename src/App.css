@@ -37,3 +37,17 @@
   display: flex;
   align-items: center;
 }
+
+.app-icon-done {
+  display: flex;
+}
+.app-img-done {
+  height: 60px;
+}
+
+.app-icon-to-do {
+  display: flex;
+}
+.app-img-to-do {
+  height: 60px;
+}
