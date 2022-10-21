@@ -26,11 +26,19 @@
   border: 1px dashed #cbc7c7;
   list-style-type: none;
   border-radius: 10px;
+  padding: 0 15px;
 }
 .app-input {
   width: 100%;
   padding: 15px;
   border-radius: 10px;
+  font-family: inherit;
+  font-size: inherit;
+}
+.app-input:focus {
+  outline: none !important;
+  border: 1px solid #c48b9f;
+  box-shadow: 0 0 10px #c48b9f;
 }
 
 .app-task-container-input-button {
@@ -40,6 +48,7 @@
 
 .app-icon-done {
   display: flex;
+  align-items: center;
 }
 .app-img-done {
   height: 60px;
@@ -47,6 +56,7 @@
 
 .app-icon-to-do {
   display: flex;
+  align-items: center;
 }
 .app-img-to-do {
   height: 60px;

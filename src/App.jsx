@@ -78,7 +78,7 @@ function App() {
         <div>
           <div className="app-icon-to-do">
             <img src={iconToDo} className="app-img-to-do" />
-            <h1>To do</h1>
+            <label>ToDo</label>
           </div>
           <ul className="app-list">
             {taskList.map((item) => {
@@ -96,7 +96,7 @@ function App() {
         <div>
           <div className="app-icon-done">
             <img src={icondone} className="app-img-done" />
-            <h1>Done</h1>
+            <label>Done</label>
           </div>
           <ul className="app-list">
             {doneList.map((item) => {
