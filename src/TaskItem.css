@@ -3,14 +3,12 @@
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-top: 10px;
 }
 .container-done {
   text-decoration: line-through;
@@ -34,6 +32,7 @@
   background-color: white;
   border-radius: 100%;
   border: 1px solid #80808080;
+  margin-top: 15px;
 }
 
 /* On mouse-over, add a grey background color */
@@ -43,7 +42,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: #21ecf3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -75,4 +74,14 @@
   display: flex;
   justify-content: space-between;
   margin-right: 30px;
+  align-items: center;
 }
+
+.task-item-icon-trash {
+  width: 55px;
+  /* display: none; */
+}
+
+/* .task-item-button:hover .task-item-icon-trash {
+  display: block;
+} */

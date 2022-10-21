@@ -3,6 +3,8 @@ import toast, { Toaster } from "react-hot-toast";
 import "./App.css";
 import TaskItem from "./TaskItem";
 import iconAdd from "./assets/icon-add.png";
+import icondone from "./assets/icon-done.png";
+import iconToDo from "./assets/icon-to-do.png";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -73,26 +75,37 @@ function App() {
           <Toaster position="top-center" />
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
+        <div>
+          <div className="app-icon-to-do">
+            <img src={iconToDo} className="app-img-to-do" />
+            <h1>To do</h1>
+          </div>
+          <ul className="app-list">
+            {taskList.map((item) => {
+              return (
+                <TaskItem
+                  label={item}
+                  onChange={markDone}
+                  onDelete={onDeleteTasks}
+                />
+              );
+            })}
+          </ul>
+        </div>
 
-        <ul className="app-list">
-          {taskList.map((item) => {
-            return (
-              <TaskItem
-                label={item}
-                onChange={markDone}
-                onDelete={onDeleteTasks}
-              />
-            );
-          })}
-        </ul>
-
-        <ul className="app-list">
-          {doneList.map((item) => {
-            return (
-              <TaskItem label={item} isDone={true} onDelete={onDeleteDone} />
-            );
-          })}
-        </ul>
+        <div>
+          <div className="app-icon-done">
+            <img src={icondone} className="app-img-done" />
+            <h1>Done</h1>
+          </div>
+          <ul className="app-list">
+            {doneList.map((item) => {
+              return (
+                <TaskItem label={item} isDone={true} onDelete={onDeleteDone} />
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
