@@ -10,6 +10,7 @@ function App() {
   const [taskList, setTaskList] = useState([]);
   const [doneList, setDoneList] = useState([]);
   const [inputText, setInputText] = useState("");
+  const [estaAberto, setValorPara] = useState(true);
 
   function addTask() {
     // if input is empty don't add a new task
@@ -59,6 +60,18 @@ function App() {
     setTaskList(arrayRemove);
   };
 
+  const onClickIcon = () => {
+    console.log(estaAberto);
+
+    if (estaAberto === false) {
+      setValorPara(true);
+    }
+
+    if (estaAberto === true) {
+      setValorPara(false);
+    }
+  };
+
   return (
     <div className="app-container">
       <div className="app-task-container">
@@ -75,22 +88,30 @@ function App() {
           <Toaster position="top-center" />
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
+
         <div>
           <div className="app-icon-to-do">
-            <img src={iconToDo} className="app-img-to-do" />
+            <img
+              src={iconToDo}
+              onClick={onClickIcon}
+              className="app-img-to-do"
+            />
+
             <label>ToDo</label>
           </div>
-          <ul className="app-list">
-            {taskList.map((item) => {
-              return (
-                <TaskItem
-                  label={item}
-                  onChange={markDone}
-                  onDelete={onDeleteTasks}
-                />
-              );
-            })}
-          </ul>
+          {estaAberto === true && (
+            <ul className="app-list">
+              {taskList.map((item) => {
+                return (
+                  <TaskItem
+                    label={item}
+                    onChange={markDone}
+                    onDelete={onDeleteTasks}
+                  />
+                );
+              })}
+            </ul>
+          )}
         </div>
 
         <div>
