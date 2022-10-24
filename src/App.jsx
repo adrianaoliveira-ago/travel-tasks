@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import ReactTooltip from "react-tooltip";
 import "./App.css";
 import TaskItem from "./TaskItem";
 import iconAdd from "./assets/icon-add.png";
@@ -62,6 +63,7 @@ function App() {
     toast("Task Deleted", {
       icon: "✏️",
     });
+
     const arrayRemove = taskList.filter((item) => {
       return item !== label;
     });
@@ -102,11 +104,13 @@ function App() {
     toast("All Tasks Deleted", {
       icon: "❌",
     });
+
     setDoneList([]);
   };
 
   return (
     <div className="app-container">
+      <ReactTooltip place="top" type="warning" effect="float" />
       <div className="app-task-container">
         <div className="app-task-container-input-button">
           <input
@@ -138,6 +142,7 @@ function App() {
             <ul className="app-list">
               {taskList.map((item) => {
                 <Toaster position="top-center" />;
+
                 return (
                   <TaskItem
                     label={item}
@@ -157,10 +162,12 @@ function App() {
           </div>
           <div className="app-icon-trash-all-contanier">
             <Toaster position="top-center" />
+
             <img
               src={iconTrashAll}
               className="app-icon-trash-all"
               onClick={clearDone}
+              data-tip="❗️Delete ALL?"
             />
           </div>
           {isOpen === true && (
