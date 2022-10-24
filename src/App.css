@@ -49,6 +49,7 @@
 .app-icon-done {
   display: flex;
   align-items: center;
+  position: absolute;
 }
 .app-img-done {
   height: 60px;
@@ -60,4 +61,12 @@
 }
 .app-img-to-do {
   height: 60px;
+}
+
+.app-icon-trash-all {
+  height: 60px;
+}
+.app-icon-trash-all-contanier {
+  display: flex;
+  justify-content: flex-end;
 }
