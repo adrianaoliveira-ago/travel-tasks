@@ -5,12 +5,14 @@ import TaskItem from "./TaskItem";
 import iconAdd from "./assets/icon-add.png";
 import icondone from "./assets/icon-done.png";
 import iconToDo from "./assets/icon-to-do.png";
+import iconTrashAll from "./assets/icon-trash-all.png";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [doneList, setDoneList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [estaAberto, setValorPara] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
 
   function addTask() {
     // if input is empty don't add a new task
@@ -47,6 +49,9 @@ function App() {
   };
 
   const onDeleteDone = (label) => {
+    toast("Task Deleted", {
+      icon: "✏️",
+    });
     const arrayRemove = doneList.filter((item) => {
       return item !== label;
     });
@@ -54,6 +59,9 @@ function App() {
   };
 
   const onDeleteTasks = (label) => {
+    toast("Task Deleted", {
+      icon: "✏️",
+    });
     const arrayRemove = taskList.filter((item) => {
       return item !== label;
     });
@@ -61,7 +69,10 @@ function App() {
   };
 
   const onClickIcon = () => {
-    console.log(estaAberto);
+    // console.log(estaAberto);
+    toast("Closed Tasks", {
+      icon: "✏️",
+    });
 
     if (estaAberto === false) {
       setValorPara(true);
@@ -70,6 +81,28 @@ function App() {
     if (estaAberto === true) {
       setValorPara(false);
     }
+  };
+
+  const isOpenList = () => {
+    // console.log(isOpen);
+    toast("Closed Tasks", {
+      icon: "✏️",
+    });
+
+    if (isOpen === false) {
+      setIsOpen(true);
+    }
+
+    if (isOpen === true) {
+      setIsOpen(false);
+    }
+  };
+
+  const clearDone = () => {
+    toast("All Tasks Deleted", {
+      icon: "❌",
+    });
+    setDoneList([]);
   };
 
   return (
@@ -91,17 +124,20 @@ function App() {
 
         <div>
           <div className="app-icon-to-do">
+            <Toaster position="top-center" />
             <img
               src={iconToDo}
               onClick={onClickIcon}
               className="app-img-to-do"
             />
 
-            <label>ToDo</label>
+            <label>ToDo ({taskList.length})</label>
           </div>
+
           {estaAberto === true && (
             <ul className="app-list">
               {taskList.map((item) => {
+                <Toaster position="top-center" />;
                 return (
                   <TaskItem
                     label={item}
@@ -116,16 +152,31 @@ function App() {
 
         <div>
           <div className="app-icon-done">
-            <img src={icondone} className="app-img-done" />
-            <label>Done</label>
+            <img src={icondone} className="app-img-done" onClick={isOpenList} />
+            <label>Done ({doneList.length})</label>
           </div>
-          <ul className="app-list">
-            {doneList.map((item) => {
-              return (
-                <TaskItem label={item} isDone={true} onDelete={onDeleteDone} />
-              );
-            })}
-          </ul>
+          <div className="app-icon-trash-all-contanier">
+            <Toaster position="top-center" />
+            <img
+              src={iconTrashAll}
+              className="app-icon-trash-all"
+              onClick={clearDone}
+            />
+          </div>
+          {isOpen === true && (
+            <ul className="app-list">
+              {doneList.map((item) => {
+                <Toaster position="top-center" />;
+                return (
+                  <TaskItem
+                    label={item}
+                    isDone={true}
+                    onDelete={onDeleteDone}
+                  />
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
     </div>
