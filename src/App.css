@@ -2,6 +2,12 @@
   width: 80px;
 }
 
+@media only screen and (max-width: 600px) {
+  .app-icon-add {
+    height: 60px;
+  }
+}
+
 .app-container {
   display: flex;
   justify-content: center;
@@ -35,6 +41,11 @@
   font-family: inherit;
   font-size: inherit;
 }
+@media only screen and (max-width: 600px) {
+  .app-input {
+    padding: 5px;
+  }
+}
 .app-input:focus {
   outline: none !important;
   border: 1px solid #c48b9f;
@@ -44,6 +55,11 @@
 .app-task-container-input-button {
   display: flex;
   align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .app-task-container-input-button {
+    margin-top: 10px;
+  }
 }
 
 .app-icon-done {
@@ -63,10 +79,30 @@
   height: 60px;
 }
 
+@media only screen and (max-width: 600px) {
+  .app-img-to-do,
+  .app-img-done {
+    height: 45px;
+  }
+}
+
 .app-icon-trash-all {
   height: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+  .app-icon-trash-all {
+    height: 50px;
+  }
 }
 .app-icon-trash-all-contanier {
   display: flex;
   justify-content: flex-end;
+}
+
+@media only screen and (max-width: 600px) {
+  .app-name-label-to-do,
+  .app-name-label-done {
+    font-size: 20px;
+  }
 }
