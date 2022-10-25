@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ReactTooltip from "react-tooltip";
+
 import "./App.css";
 import TaskItem from "./TaskItem";
 import iconAdd from "./assets/icon-add.png";
@@ -9,11 +10,41 @@ import iconToDo from "./assets/icon-to-do.png";
 import iconTrashAll from "./assets/icon-trash-all.png";
 
 function App() {
+  const isFirstRender = useRef(true);
+
   const [taskList, setTaskList] = useState([]);
   const [doneList, setDoneList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [estaAberto, setValorPara] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      console.log("first render");
+
+      const savedList = JSON.parse(localStorage.getItem("taskList"));
+      const savedListDone = JSON.parse(localStorage.getItem("doneList"));
+
+      if (savedList && savedList.length) {
+        console.log(savedList);
+        // update task list
+        setTaskList(savedList);
+      }
+      if (savedListDone && savedListDone.length) {
+        console.log(savedListDone);
+        // update task list
+        setDoneList(savedListDone);
+      }
+
+      return; // 👈️ return early if first render
+    } else {
+      console.log(taskList.length);
+      // store the tasks in the local Storage
+      localStorage.setItem("taskList", JSON.stringify(taskList));
+      localStorage.setItem("doneList", JSON.stringify(doneList));
+    }
+  }, [taskList, doneList]);
 
   function addTask() {
     // if input is empty don't add a new task
@@ -27,6 +58,8 @@ function App() {
       // get text from input and add on task list
       const newArray = taskList.concat(inputText);
       setTaskList(newArray);
+
+      // clear the input
       setInputText("");
     }
   }
@@ -101,16 +134,17 @@ function App() {
   };
 
   const clearDone = () => {
+    setDoneList([]);
+
     toast("All Tasks Deleted", {
       icon: "❌",
     });
-
-    setDoneList([]);
   };
 
   return (
     <div className="app-container">
-      <ReactTooltip place="top" type="warning" effect="float" />
+      <Toaster position="top-center" />
+
       <div className="app-task-container">
         <div className="app-task-container-input-button">
           <input
@@ -122,13 +156,11 @@ function App() {
           />
 
           {/* <img src="icon-add.png" onClick={addTask}/> */}
-          <Toaster position="top-center" />
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
 
         <div>
           <div className="app-icon-to-do">
-            <Toaster position="top-center" />
             <img
               src={iconToDo}
               onClick={onClickIcon}
@@ -136,15 +168,13 @@ function App() {
             />
 
             <label className="app-name-label-to-do">
-              ToDo ({taskList.length})
+              ToDo({taskList.length})
             </label>
           </div>
 
           {estaAberto === true && (
             <ul className="app-list">
               {taskList.map((item) => {
-                <Toaster position="top-center" />;
-
                 return (
                   <TaskItem
                     label={item}
@@ -158,26 +188,34 @@ function App() {
         </div>
 
         <div>
-          <div className="app-icon-done">
-            <img src={icondone} className="app-img-done" onClick={isOpenList} />
-            <label className="app-name-label-done">
-              Done ({doneList.length})
-            </label>
-          </div>
-          <div className="app-icon-trash-all-contanier">
-            <Toaster position="top-center" />
+          <div className="app-done-header">
+            <div className="app-icon-done">
+              <img
+                src={icondone}
+                className="app-img-done"
+                onClick={isOpenList}
+              />
+              <label className="app-name-label-done">
+                Done({doneList.length})
+              </label>
+            </div>
 
-            <img
-              src={iconTrashAll}
-              className="app-icon-trash-all"
-              onClick={clearDone}
-              data-tip="❗️Delete ALL?"
-            />
+            {doneList.length > 0 && (
+              <div className="app-icon-trash-all-contanier">
+                <ReactTooltip place="top" type="warning" effect="float" />
+                <img
+                  src={iconTrashAll}
+                  className="app-icon-trash-all"
+                  onClick={clearDone}
+                  data-tip="❗️Delete ALL?"
+                />
+              </div>
+            )}
           </div>
+
           {isOpen === true && (
-            <ul className="app-list">
+            <ul className="app-list-done">
               {doneList.map((item) => {
-                <Toaster position="top-center" />;
                 return (
                   <TaskItem
                     label={item}

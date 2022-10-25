@@ -13,7 +13,7 @@ function TaskItem({ label, onChange, onDelete, isDone }) {
   }
 
   return (
-    <li className="round">
+    <li className="round" key={label}>
       <label className={labelClass}>
         <div className="task-item-button">
           {label}
