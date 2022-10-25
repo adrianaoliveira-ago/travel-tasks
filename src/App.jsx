@@ -72,9 +72,6 @@ function App() {
 
   const onClickIcon = () => {
     // console.log(estaAberto);
-    toast("Closed Tasks", {
-      icon: "✏️",
-    });
 
     if (estaAberto === false) {
       setValorPara(true);
@@ -82,14 +79,14 @@ function App() {
 
     if (estaAberto === true) {
       setValorPara(false);
+      toast("Closed Tasks", {
+        icon: "✏️",
+      });
     }
   };
 
   const isOpenList = () => {
     // console.log(isOpen);
-    toast("Closed Tasks", {
-      icon: "✏️",
-    });
 
     if (isOpen === false) {
       setIsOpen(true);
@@ -97,6 +94,9 @@ function App() {
 
     if (isOpen === true) {
       setIsOpen(false);
+      toast("Closed Tasks", {
+        icon: "✏️",
+      });
     }
   };
 
@@ -135,7 +135,9 @@ function App() {
               className="app-img-to-do"
             />
 
-            <label>ToDo ({taskList.length})</label>
+            <label className="app-name-label-to-do">
+              ToDo ({taskList.length})
+            </label>
           </div>
 
           {estaAberto === true && (
@@ -158,7 +160,9 @@ function App() {
         <div>
           <div className="app-icon-done">
             <img src={icondone} className="app-img-done" onClick={isOpenList} />
-            <label>Done ({doneList.length})</label>
+            <label className="app-name-label-done">
+              Done ({doneList.length})
+            </label>
           </div>
           <div className="app-icon-trash-all-contanier">
             <Toaster position="top-center" />
