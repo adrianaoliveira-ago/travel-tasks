@@ -16,7 +16,7 @@ function App() {
   const [doneList, setDoneList] = useState([]);
   const [inputText, setInputText] = useState("");
   const [estaAberto, setValorPara] = useState(true);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -76,10 +76,10 @@ function App() {
       return item !== label;
     });
     setTaskList(newTaskArray);
-
     // add label on done list
     const newArray = doneList.concat(label);
     setDoneList(newArray);
+    setIsOpen(true);
   };
 
   const onDeleteDone = (label) => {
@@ -141,6 +141,16 @@ function App() {
     });
   };
 
+  const handleKeyDown = (event) => {
+    console.log("handleKeyDown");
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      addTask();
+    }
+  };
+
   return (
     <div className="app-container">
       <Toaster position="top-center" />
@@ -153,8 +163,8 @@ function App() {
             placeholder="Enter your task"
             value={inputText}
             onChange={onChange}
+            onKeyDown={handleKeyDown}
           />
-
           {/* <img src="icon-add.png" onClick={addTask}/> */}
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
