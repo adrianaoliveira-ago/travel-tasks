@@ -44,7 +44,6 @@
 }
 @media only screen and (max-width: 600px) {
   .app-input {
-    padding: 5px;
     font-size: 15px;
   }
 }
@@ -104,12 +103,12 @@
   /* margin-top: 10px; */
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .app-name-label-to-do,
   .app-name-label-done {
     font-size: 20px;
   }
-}
+} */
 
 .app-name-label-to-do,
 .app-name-label-done {
