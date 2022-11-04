@@ -8,6 +8,7 @@ import iconAdd from "./assets/icon-add.png";
 import icondone from "./assets/icon-done.png";
 import iconToDo from "./assets/icon-to-do.png";
 import iconTrashAll from "./assets/icon-trash-all.png";
+import iconArrowDown from "./assets/icon-arrow-down.png";
 
 function App() {
   const isFirstRender = useRef(true);
@@ -139,6 +140,8 @@ function App() {
     toast("All Tasks Deleted", {
       icon: "❌",
     });
+
+    isOpenList();
   };
 
   const handleKeyDown = (event) => {
@@ -205,6 +208,7 @@ function App() {
                 className="app-img-done"
                 onClick={isOpenList}
               />
+
               <label className="app-name-label-done">
                 Done({doneList.length})
               </label>
