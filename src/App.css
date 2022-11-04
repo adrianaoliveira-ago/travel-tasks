@@ -1,5 +1,7 @@
 .app-icon-add {
   width: 80px;
+  /* opacity: 0; */
+  /* transform: translate(0%, -400%) matrix(1, 0, 0, 1, -28.75, -8); */
 }
 
 @media only screen and (max-width: 600px) {
