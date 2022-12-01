@@ -8,7 +8,6 @@ import iconAdd from "./assets/icon-add.png";
 import icondone from "./assets/icon-done.png";
 import iconToDo from "./assets/icon-to-do.png";
 import iconTrashAll from "./assets/icon-trash-all.png";
-import iconArrowDown from "./assets/icon-arrow-down.png";
 
 function App() {
   const isFirstRender = useRef(true);
@@ -57,7 +56,12 @@ function App() {
       // show the alert "Input is empty"
     } else {
       // get text from input and add on task list
-      const newArray = taskList.concat(inputText);
+      // taskList = [ "task 2", task 1"," ...] => [{task: "task1", total: 10, priority: 0}, {task: "task2", total: 5, priority: 0}...]
+      const newArray = taskList.concat({
+        task: inputText,
+        total: 1,
+        priority: 0,
+      });
       setTaskList(newArray);
 
       // clear the input
@@ -74,8 +78,9 @@ function App() {
     // console.log("markDone", label);
     // remove label from taskList
     const newTaskArray = taskList.filter((item) => {
-      return item !== label;
+      return item.task !== label;
     });
+
     setTaskList(newTaskArray);
     // add label on done list
     const newArray = doneList.concat(label);
@@ -99,7 +104,7 @@ function App() {
     });
 
     const arrayRemove = taskList.filter((item) => {
-      return item !== label;
+      return item.task !== label;
     });
     setTaskList(arrayRemove);
   };
@@ -188,11 +193,14 @@ function App() {
           {estaAberto === true && (
             <ul className="app-list">
               {taskList.map((item) => {
+                //item: "task 1" => {task: "task 1", total: 1, priority: 0}
                 return (
                   <TaskItem
-                    label={item}
+                    label={item.task} // {task: "task 1", total: 1, priority: 0}
+                    // total
                     onChange={markDone}
                     onDelete={onDeleteTasks}
+                    total={item.total}
                   />
                 );
               })}
@@ -221,7 +229,7 @@ function App() {
                   src={iconTrashAll}
                   className="app-icon-trash-all"
                   onClick={clearDone}
-                  data-tip="❗️Delete ALL?"
+                  data-tip="❗️ Delete ALL?"
                 />
               </div>
             )}
