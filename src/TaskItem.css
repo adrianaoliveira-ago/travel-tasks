@@ -84,3 +84,17 @@
 /* .task-item-button:hover .task-item-icon-trash {
   display: block;
 } */
+
+.task-item-icon-minus,
+.task-item-icon-plus {
+  width: 30px;
+}
+
+.task-item-icons-minus-plus {
+  display: flex;
+  align-items: center;
+}
+
+.task-item-button-minus-plus {
+  display: flex;
+}
