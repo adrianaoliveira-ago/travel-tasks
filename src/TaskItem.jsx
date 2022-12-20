@@ -1,74 +1,81 @@
-import { useState } from "react";
 import "./TaskItem.css";
-import iconTrash from "./assets/icon-trash.svg";
+import PropTypes from "prop-types";
+import React from "react";
+import PriorityDropdown from "./PriorityDropdown";
 import iconMinus from "./assets/icon-minus.png";
 import iconPlus from "./assets/icon-plus.png";
+import iconTrash from "./assets/icon-trash.svg";
 
-function TaskItem({ label, total, onChange, onDelete, isDone }) {
+const TaskItem = ({ label, total, priority, onChange, onDelete, onPlus, onMinus, onPriorityChange, isDone = false }) => {
   function checkboxChange() {
     onChange(label);
   }
-  const labelClass = isDone ? "container-done container" : "container";
+  const labelClass = isDone ? "container-done task-item-button" : "task-item-button";
 
   function onDeleteTasks() {
     onDelete(label);
   }
 
-  // const [addMinus, setAddMinus] = useState(0);
-
   const buttonMinus = (e) => {
     e.preventDefault();
-    // let newCount = addMinus === 1;
-
-    // if (newCount > 1) {
-    //   newCount < 1;
-    // }
-    // setAddMinus(newCount);
 
     console.log("minus");
+    onMinus(label);
   };
 
   const buttonPlus = (e) => {
     e.preventDefault();
 
     console.log("plus");
+    onPlus(label);
+  };
+
+  const onPriorityDropdownChange = (e) => {
+    console.log("onPriorityChange", e.target.value);
+    onPriorityChange(label, e.target.value);
   };
 
   return (
     <li className="round" key={label}>
-      <label className={labelClass}>
-        <div className="task-item-button">
-          {label}
-          <div>
-            <input type="checkbox" onChange={checkboxChange} checked={isDone} />
-            <span className="checkmark"></span>
-          </div>
-          <div className="task-item-button-minus-plus">
-            <div className="task-item-icons-minus-plus">
-              <img
-                src={iconMinus}
-                className="task-item-icon-minus"
-                onClick={buttonMinus}
-              />
-              {total}
-              <img
-                src={iconPlus}
-                className="task-item-icon-plus"
-                onClick={buttonPlus}
-              />
-              {/* - total + */}
-            </div>
-            <img
-              src={iconTrash}
-              onClick={onDeleteTasks}
-              className="task-item-icon-trash"
-            />
-            {/* <button onClick={onDeleteTasks}>delete</button> */}
-          </div>
+      <label className={"container"}>
+        <div>
+          <input type="checkbox" onChange={checkboxChange} checked={isDone} />
+          <span className="checkmark"></span>
         </div>
       </label>
+
+      <div className={labelClass}>
+        {label} {isDone === true && `(${total})`}
+      </div>
+
+      <PriorityDropdown value={priority} onChange={onPriorityDropdownChange} />
+
+      <div className="task-item-button-minus-plus">
+        {isDone === false && (
+          <div className="task-item-icons-minus-plus">
+            {total > 0 && <img src={iconMinus} className="task-item-icon-minus" onClick={buttonMinus} />}
+            <div>{total}</div>
+
+            <img src={iconPlus} className="task-item-icon-plus" onClick={buttonPlus} />
+          </div>
+        )}
+      </div>
+
+      <img src={iconTrash} onClick={onDeleteTasks} className="task-item-icon-trash" />
     </li>
   );
-}
+};
+
+TaskItem.propTypes = {
+  label: PropTypes.string,
+  total: PropTypes.number,
+  priority: PropTypes.number,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  onPriorityChange: PropTypes.func,
+  onPlus: PropTypes.func,
+  onMinus: PropTypes.func,
+  isDone: PropTypes.bool,
+};
 
 export default TaskItem;

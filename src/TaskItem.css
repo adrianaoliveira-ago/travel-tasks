@@ -1,4 +1,8 @@
 /* Customize the label (the container) */
+.round {
+  display: flex;
+}
+
 .container {
   display: block;
   position: relative;
@@ -9,7 +13,9 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: flex;
 }
+
 .container-done {
   text-decoration: line-through;
 }
@@ -74,6 +80,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
 }
 
 .task-item-icon-trash {
@@ -93,6 +100,7 @@
 .task-item-icons-minus-plus {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 
 .task-item-button-minus-plus {
