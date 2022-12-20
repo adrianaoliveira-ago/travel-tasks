@@ -1,0 +1,14 @@
+.task-item-content-icons-priority {
+  display: flex;
+  height: 25px;
+  margin-top: 12px;
+  height: 30px;
+}
+
+.priority-dropdown-box {
+  background-color: #f1cfcdfc;
+  border-radius: 7px;
+  margin-right: 15px;
+  font-family: monospace;
+  font-size: 15px;
+}
