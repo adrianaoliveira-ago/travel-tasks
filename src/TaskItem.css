@@ -106,3 +106,39 @@
 .task-item-button-minus-plus {
   display: flex;
 }
+
+.task-item-div {
+  display: flex;
+}
+
+.task-item-div-container {
+  display: flex;
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+  .task-item-div {
+    display: flex;
+    position: absolute;
+    margin-top: 40px;
+    width: 65%;
+    justify-content: space-between;
+  }
+  .task-item-button {
+    margin-top: 16px;
+  }
+  .checkmark {
+    height: 20px;
+    width: 20px;
+  }
+  .priority-dropdown-box {
+    height: 22px;
+    margin-top: 18px;
+  }
+  .task-item-icon-trash {
+    width: 50px;
+  }
+  .task-item-content-icons-priority {
+    margin-top: 0px !important;
+  }
+}

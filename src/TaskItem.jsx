@@ -37,31 +37,32 @@ const TaskItem = ({ label, total, priority, onChange, onDelete, onPlus, onMinus,
 
   return (
     <li className="round" key={label}>
-      <label className={"container"}>
-        <div>
+      <div className="task-item-div-container">
+        <label className={"container"}>
           <input type="checkbox" onChange={checkboxChange} checked={isDone} />
           <span className="checkmark"></span>
+        </label>
+
+        <div className={labelClass}>
+          {label} {isDone === true && `(${total})`}
         </div>
-      </label>
-
-      <div className={labelClass}>
-        {label} {isDone === true && `(${total})`}
       </div>
+      <div className="task-item-div">
+        <PriorityDropdown value={priority} onChange={onPriorityDropdownChange} />
 
-      <PriorityDropdown value={priority} onChange={onPriorityDropdownChange} />
+        <div className="task-item-button-minus-plus">
+          {isDone === false && (
+            <div className="task-item-icons-minus-plus">
+              {total > 0 && <img src={iconMinus} className="task-item-icon-minus" onClick={buttonMinus} />}
+              <div>{total}</div>
 
-      <div className="task-item-button-minus-plus">
-        {isDone === false && (
-          <div className="task-item-icons-minus-plus">
-            {total > 0 && <img src={iconMinus} className="task-item-icon-minus" onClick={buttonMinus} />}
-            <div>{total}</div>
+              <img src={iconPlus} className="task-item-icon-plus" onClick={buttonPlus} />
+            </div>
+          )}
+        </div>
 
-            <img src={iconPlus} className="task-item-icon-plus" onClick={buttonPlus} />
-          </div>
-        )}
+        <img src={iconTrash} onClick={onDeleteTasks} className="task-item-icon-trash" />
       </div>
-
-      <img src={iconTrash} onClick={onDeleteTasks} className="task-item-icon-trash" />
     </li>
   );
 };
