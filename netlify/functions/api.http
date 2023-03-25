@@ -1,0 +1,10 @@
+### Get a task by id
+@id = 64157adaa708276b573f79cf
+GET http://localhost:8888/.netlify/functions/backend?taskid={{id}}
+
+### Get not found / taskid param is invalid
+@idnotfound = aaaaaaaaaaaaaaaaaaaaaaaa
+GET http://localhost:8888/.netlify/functions/backend?taskid={{idnotfound}}
+
+### Get taskid param is missing
+GET http://localhost:8888/.netlify/functions/backend
