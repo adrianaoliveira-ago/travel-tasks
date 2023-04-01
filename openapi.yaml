@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Backend API
+  description: API for accessing backend resources
+  version: 1.0.0
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://travel-tasks.netlify.app
+    description: Production environment
+  - url: http://localhost:8888
+    description: Local enviromment
+
+
+paths:
+  /.netlify/functions/backend:
+    get:
+      summary: Retrieve a task by ID
+      operationId: getTaskById
+      security: []
+      parameters:
+        - in: query
+          name: taskid
+          required: true
+          description: The ID of the task to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resp:
+                    type: object
+                    description: The task object
+                  status:
+                    type: integer
+                    description: The HTTP status code
+                    example: 200
+              example:
+                resp:
+                  _id: 64157adaa708276b573f79cf,
+                  name: My Task,
+                  description: My Task Description,
+                  completed: false
+                status: 200
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+                    example: taskid is required
+                  status:
+                    type: integer
+                    description: The HTTP status code
+                    example: 400
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+                    example: task not found
+                  status:
+                    type: integer
+                    description: The HTTP status code
+                    example: 404
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+                    example: Internal server error
+                  status:
+                    type: integer
+                    description: The HTTP status code
+                    example: 500

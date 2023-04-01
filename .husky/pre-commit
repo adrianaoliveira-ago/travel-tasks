@@ -6,3 +6,7 @@ echo "[Husky] Running Eslint"
 npm run lint
 echo "[Husky] Running Prettier"
 npm run prettier
+echo "[Husky] Running openapi validator"
+npm run lint:openapi
+echo "[Husky] Building project"
+npm run build

@@ -10,7 +10,8 @@
     "lint": "eslint 'src/**' ",
     "prettier": "prettier --check ./src",
     "prepare": "husky install",
-    "netlify:dev": "netlify dev"
+    "netlify:dev": "netlify dev",
+    "lint:openapi": "npx @redocly/cli lint openapi.yaml"
   },
   "dependencies": {
     "firebase": "^9.18.0",
@@ -19,7 +20,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
-    "react-tooltip": "^4.4.3"
+    "react-router-dom": "^6.10.0",
+    "react-tooltip": "^4.4.3",
+    "swagger-ui-react": "^4.18.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
