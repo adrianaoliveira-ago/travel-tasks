@@ -11,6 +11,9 @@ npm run prettier
 echo "[Husky] Running openapi validator"
 npm run lint:openapi
 
+echo "[Husky] Running tests"
+npm run test
+
 echo "[Husky] Building project"
 npm run build
 
