@@ -17,6 +17,7 @@ import iconDropDown from "./assets/icon-drop-down.png";
 import iconTrash from "./assets/icon-trash-all.png";
 import iconYes from "./assets/icon-yes.png";
 import iconNo from "./assets/icon-no.png";
+import { getProjectUrl } from "./utils/api";
 
 const ListContent = ({ list, onDelete, onSelectedProject }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,7 +28,8 @@ const ListContent = ({ list, onDelete, onSelectedProject }) => {
     const deleteProject = async () => {
       console.log("delete", selectedProjectId);
 
-      const url = `https://mongo-db-spring-boot.onrender.com/api/v2/projects/${selectedProjectId}`;
+      // const url = `https://mongo-db-spring-boot.onrender.com/api/v2/projects/${selectedProjectId}`;
+      const url = getProjectUrl(selectedProjectId);
 
       await fetch(url, {
         method: "DELETE",

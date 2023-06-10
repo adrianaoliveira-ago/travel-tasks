@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { useDisclosure, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, Spinner } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import { getProjectUserId, getProjectsUrl } from "./utils/api";
 
 import { auth } from "./auth/firebase";
 import Input from "./Input";
@@ -24,8 +25,9 @@ const SandwichMenu = ({ onSelectProject }) => {
   const [isLoadingAdd, setIsLoadingAdd] = useState(false);
 
   const fetchData = async () => {
-    console.log("fetching Data");
-    const fetchUrl = `https://mongo-db-spring-boot.onrender.com/api/v2/projects?userId=${user?.uid}`;
+    console.log(`fetching all projects from user of ID ${user?.uid}`);
+    // const fetchUrl = `https://mongo-db-spring-boot.onrender.com/api/v2/projects?userId=${user?.uid}`;
+    const fetchUrl = getProjectUserId(user?.uid);
 
     const response = await fetch(fetchUrl);
     const responseJson = await response.json();
@@ -69,7 +71,8 @@ const SandwichMenu = ({ onSelectProject }) => {
       name: newProjectValue,
       userId: user.uid,
     };
-    const url = `https://mongo-db-spring-boot.onrender.com/api/projects/`;
+    // const url = `https://mongo-db-spring-boot.onrender.com/api/projects/`;
+    const url = getProjectsUrl();
 
     const response = await fetch(url, {
       method: "POST",
