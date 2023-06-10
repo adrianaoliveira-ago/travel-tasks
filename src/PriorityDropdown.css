@@ -3,12 +3,14 @@
   height: 25px;
   margin-top: 12px;
   height: 30px;
+  margin-right: 20px;
+  /* margin-right: 9px; */
 }
 
 .priority-dropdown-box {
   background-color: #f1cfcdfc;
   border-radius: 7px;
-  margin-right: 15px;
+  margin-right: 15px !important;
   font-family: monospace;
-  font-size: 15px;
+  font-size: 15px !important;
 }

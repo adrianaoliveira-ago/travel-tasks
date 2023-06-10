@@ -8,6 +8,8 @@ import iconAdd from "./assets/icon-add.png";
 import icondone from "./assets/icon-done.png";
 import iconToDo from "./assets/icon-to-do.png";
 import iconTrashAll from "./assets/icon-trash-all.png";
+import Header from "./Header";
+import Input from "./Input";
 
 function App() {
   const isFirstRender = useRef(true);
@@ -221,11 +223,14 @@ function App() {
 
   return (
     <div className="app-container">
+      <Header />
+
       <Toaster position="top-center" />
 
       <div className="app-task-container">
         <div className="app-task-container-input-button">
-          <input className="app-input" type="text" placeholder="Enter your task" value={inputText} onChange={onChange} onKeyDown={handleKeyDown} />
+          <Input value={inputText} onChange={onChange} onKeyDown={handleKeyDown} placeholder="Enter your task" />
+          {/* <input className="app-input" type="text" placeholder="Enter your task" value={inputText} onChange={onChange} onKeyDown={handleKeyDown} /> */}
           <img src={iconAdd} onClick={addTask} className="app-icon-add" />
         </div>
 

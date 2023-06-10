@@ -1,0 +1,19 @@
+.app-input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  border: 2px solid #a7a4a4;
+}
+
+@media only screen and (max-width: 600px) {
+  .app-input {
+    font-size: 15px;
+  }
+}
+.app-input:focus {
+  outline: none !important;
+  border: 1px solid #c48b9f;
+  box-shadow: 0 0 10px #c48b9f;
+}
