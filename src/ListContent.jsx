@@ -10,7 +10,9 @@ import {
   useDisclosure,
   // AlertDialogCloseButton,
   // Button,
+  Spinner,
 } from "@chakra-ui/react";
+import toast from "react-hot-toast";
 
 import "./ListContent.css";
 import iconDropDown from "./assets/icon-drop-down.png";
@@ -22,6 +24,7 @@ import { getProjectUrl } from "./utils/api";
 const ListContent = ({ list, onDelete, onSelectedProject }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedProjectId, setSelectedProjectId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const cancelRef = React.useRef();
 
   const DeleteConfimationModal = () => {
@@ -30,6 +33,7 @@ const ListContent = ({ list, onDelete, onSelectedProject }) => {
 
       // const url = `https://mongo-db-spring-boot.onrender.com/api/v2/projects/${selectedProjectId}`;
       const url = getProjectUrl(selectedProjectId);
+      setIsLoading(true);
 
       await fetch(url, {
         method: "DELETE",
@@ -38,13 +42,16 @@ const ListContent = ({ list, onDelete, onSelectedProject }) => {
         },
         // body: JSON.stringify(data),
       });
-
       // const responseJson = await response.json();
       // console.log(responseJson);
 
       // on success close modal and show toast and call prop on delete
       onClose();
       onDelete();
+      setIsLoading(false);
+      toast("Deleted List", {
+        icon: "✅",
+      });
     };
 
     return (
@@ -56,11 +63,13 @@ const ListContent = ({ list, onDelete, onSelectedProject }) => {
           {/* <AlertDialogCloseButton /> */}
           <AlertDialogBody>Are you sure you want to discard all of your notes? </AlertDialogBody>
           <AlertDialogFooter>
-            <div>
-              <img src={iconNo} ref={cancelRef} onClick={onClose} className="list-icon-no" />
-
-              <img src={iconYes} onClick={deleteProject} className="list-icon-yes" />
-            </div>
+            {isLoading === false && (
+              <div>
+                <img src={iconNo} ref={cancelRef} onClick={onClose} className="list-icon-no" />
+                <img src={iconYes} onClick={deleteProject} className="list-icon-yes" />
+              </div>
+            )}
+            {isLoading === true && <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="lg" />}
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
