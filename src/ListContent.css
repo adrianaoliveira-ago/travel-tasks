@@ -1,0 +1,43 @@
+.list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 15px; */
+}
+.list-content-icon-drop-down {
+  width: 30px;
+  rotate: -90deg;
+  height: 39px;
+  padding-top: 14px;
+}
+.list-name {
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+
+.list-content-div {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-icon-trash {
+  width: 55px;
+  /* display: none; */
+  opacity: 0; /* Set the initial opacity to 0 to hide the button */
+  transition: opacity 0.3s ease;
+}
+
+.list-icon-trash:hover {
+  opacity: 1;
+}
+
+.list-icons {
+  display: flex;
+  align-items: center;
+}
+
+.list-icon-no,
+.list-icon-yes {
+  width: 85px;
+}
