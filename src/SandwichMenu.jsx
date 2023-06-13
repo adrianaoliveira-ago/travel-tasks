@@ -136,8 +136,10 @@ const SandwichMenu = ({ onSelectProject }) => {
               onKeyDown={handleKeyDown}
               isDisabled={isLoadingAdd}
             />
-            {isLoadingAdd === false && <img src={iconAdd} className="sandwich-menu-footer-img" onClick={onNewProjectButtonClick} />}
-            {isLoadingAdd === true && <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="lg" />}
+            <div className="sandwich-menu-icon-spinner">
+              {isLoadingAdd === false && <img src={iconAdd} className="sandwich-menu-footer-img" onClick={onNewProjectButtonClick} />}
+              {isLoadingAdd === true && <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="lg" />}
+            </div>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

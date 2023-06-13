@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 
 import { auth, signInWithGoogle, logout } from "./auth/firebase";
 
@@ -15,10 +16,16 @@ const Header = () => {
 
   const onGoogleSignIn = () => {
     signInWithGoogle();
+    // toast("Successful Login", {
+    //   icon: "✅",
+    // });
   };
 
   const onGoogleLogOut = () => {
     logout();
+    toast("Successful Logout", {
+      icon: "✅",
+    });
   };
 
   const updateProject = (project) => {
@@ -29,7 +36,7 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="header-nav">
-        <div>
+        <div className="header-name-project">
           <SandwichMenu onSelectProject={updateProject} />
           <span>{selectedProject?.name}</span>
         </div>
@@ -39,8 +46,7 @@ const Header = () => {
               <span className="header-name-user">{user?.displayName}</span>
               <span className="header-email">{user?.email}</span>
             </div>
-
-            <img src={user?.photoURL} referrerPolicy="no-referrer" className="header-photo"></img>
+            {user && <img src={user?.photoURL} referrerPolicy="no-referrer" className="header-photo"></img>}
             {!user && (
               <img src={iconLogIn} onClick={onGoogleSignIn} className="header-icon-log-in"></img>
               // <button data-label="Register" className="rainbow-hover" >

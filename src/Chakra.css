@@ -17,3 +17,7 @@
   flex-direction: column;
   /* width: 100% */
 }
+
+.chakra-modal__content {
+  border: 2px solid #000000 !important;
+}

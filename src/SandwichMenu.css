@@ -4,3 +4,9 @@
 .sandwich-menu-footer-img {
   width: 70px;
 }
+
+.sandwich-menu-icon-spinner {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}

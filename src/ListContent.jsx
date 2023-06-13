@@ -61,7 +61,7 @@ const ListContent = ({ list, onDelete, onSelectedProject }) => {
         <AlertDialogContent>
           <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
           {/* <AlertDialogCloseButton /> */}
-          <AlertDialogBody>Are you sure you want to discard all of your notes? </AlertDialogBody>
+          <AlertDialogBody className="list-alert-name">Are you sure you want to discard all of your notes? </AlertDialogBody>
           <AlertDialogFooter>
             {isLoading === false && (
               <div>

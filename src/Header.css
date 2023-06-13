@@ -96,6 +96,10 @@ body {
   width: 60px;
 }
 
+.header-name-project {
+  display: flex;
+  align-items: center;
+}
 @media only screen and (max-width: 500px) {
   .header-menu {
     margin-left: 0px;
