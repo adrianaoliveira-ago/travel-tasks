@@ -118,19 +118,10 @@
 
 @media only screen and (max-width: 500px) {
   .task-item-div {
-    /* display: flex;
-    position: absolute;
-    margin-top: 40px;
-    width: 65%;
-    justify-content: space-between; */
-    /* position: absolute; */
-    /* padding-top: 27px; */
     display: flex;
     width: 100%;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* margin-top: 25px; */
-    /* margin-top: 25px; */
+    justify-content: space-between;
+    /* height: 30px; */
   }
   .task-item-button {
     margin-top: 16px;
@@ -140,7 +131,7 @@
     width: 20px;
   }
   .priority-dropdown-box {
-    /* height: 30px; */
+    height: 30px;
     margin-top: 13px;
   }
   .task-item-icon-trash {
@@ -157,5 +148,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .container .checkmark:after {
+    left: 6px;
+    top: 3px;
+  }
+  .task-item-content-icons-priority {
+    height: 36px;
   }
 }
